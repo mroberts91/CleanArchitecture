@@ -36,44 +36,10 @@ namespace CleanArchitecture.Application
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            if (environment.IsEnvironment("Test"))
-            {
-                services.AddIdentityServer()
-                    .AddApiAuthorization<ApplicationUser, ApplicationDbContext>(options =>
-                    {
-                        options.Clients.Add(new Client
-                        {
-                            ClientId = "CleanArchitecture.IntegrationTests",
-                            AllowedGrantTypes = { GrantType.ResourceOwnerPassword },
-                            ClientSecrets = { new Secret("secret".Sha256()) },
-                            AllowedScopes = { "CleanArchitecture.WebUIAPI", "openid", "profile" }
-                        });
-                    }).AddTestUsers(new List<TestUser>
-                    {
-                        new TestUser
-                        {
-                            SubjectId = "f26da293-02fb-4c90-be75-e4aa51e0bb17",
-                            Username = "user@clean-blazor",
-                            Password = "CleanBlazor!",
-                            Claims = new List<Claim>
-                            {
-                                new Claim(JwtClaimTypes.Email, "user@clean-blazor")
-                            }
-                        }
-                    });
-            }
-            else
-            {
-                services.AddIdentityServer()
-                        .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
 
-                services.AddTransient<IDateTime, DateTimeService>();
-                services.AddTransient<IIdentityService, IdentityService>();
-                services.AddTransient<ICsvFileBuilder, CsvFileBuilder>();
-            }
-            services.AddAuthentication()
-                    .AddIdentityServerJwt();
-
+            services.AddTransient<IDateTime, DateTimeService>();
+            services.AddTransient<IIdentityService, IdentityService>();
+            services.AddTransient<ICsvFileBuilder, CsvFileBuilder>();
             return services;
 
         }
