@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.Application.TodoLists.Queries.GetTodos
 {
-    public class GetTodosQuery : IRequest<TodosVm>
+    public class GetTodosQuery : IRequest<TodosViewModel>
     {
-        public class GetTodosQueryHandler : IRequestHandler<GetTodosQuery, TodosVm>
+        public class GetTodosQueryHandler : IRequestHandler<GetTodosQuery, TodosViewModel>
         {
             private readonly IApplicationDbContext _context;
             private readonly IMapper _mapper;
@@ -22,9 +22,9 @@ namespace CleanArchitecture.Application.TodoLists.Queries.GetTodos
                 _mapper = mapper;
             }
 
-            public async Task<TodosVm> Handle(GetTodosQuery request, CancellationToken cancellationToken)
+            public async Task<TodosViewModel> Handle(GetTodosQuery request, CancellationToken cancellationToken)
             {
-                var vm = new TodosVm();
+                var vm = new TodosViewModel();
 
                 vm.Lists = await _context.TodoLists
                     .ProjectTo<TodoListDto>(_mapper.ConfigurationProvider)

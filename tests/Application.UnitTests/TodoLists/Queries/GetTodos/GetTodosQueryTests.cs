@@ -31,7 +31,7 @@ namespace CleanArchitecture.Application.UnitTests.TodoLists.Queries.GetTodos
 
             var result = await handler.Handle(query, CancellationToken.None);
 
-            result.ShouldBeOfType<TodosVm>();
+            result.ShouldBeOfType<TodosViewModel>();
             result.Lists.Count.ShouldBe(1);
 
             var list = result.Lists.First();

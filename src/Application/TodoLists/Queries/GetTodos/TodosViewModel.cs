@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace CleanArchitecture.Application.TodoLists.Queries.GetTodos
 {
-    public class TodosVm
+    public class TodosViewModel
     {
         public IList<PriorityLevelDto> PriorityLevels =
             Enum.GetValues(typeof(PriorityLevel))
