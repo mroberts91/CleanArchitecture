@@ -1,8 +1,12 @@
 ﻿using CleanArchitecture.Application.Common.Interfaces;
 using Microsoft.AspNetCore.Http;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
+using System.Threading.Tasks;
 
-namespace CleanArchitecture.WebUI.Services
+namespace Server.Services
 {
     public class CurrentUserService : ICurrentUserService
     {
