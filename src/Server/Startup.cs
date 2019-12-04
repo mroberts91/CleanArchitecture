@@ -40,7 +40,6 @@ namespace Server
             services.AddInfrastructure(Configuration, Environment);
 
             services.AddScoped<ICurrentUserService, CurrentUserService>();
-            services.AddScoped<IMediator>();
 
             services.AddHttpContextAccessor();
 
@@ -86,6 +85,7 @@ namespace Server
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGrpcService<GreeterService>();
+                endpoints.MapGrpcService<TodoService>();
 
                 endpoints.MapGet("/generateJwtToken", context =>
                 {

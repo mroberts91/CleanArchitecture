@@ -1,8 +1,9 @@
 syntax = "proto3";
 
-option csharp_namespace = "Server.Protos";
-
+option csharp_namespace = "MessageServices";
 import "google/protobuf/empty.proto";
+
+package Todos;
 
 service Todo {
 	rpc AllTodoLists (google.protobuf.Empty) returns (TodoLists);
